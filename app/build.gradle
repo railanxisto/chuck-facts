@@ -4,6 +4,8 @@ apply plugin: 'kotlin-android'
 
 apply plugin: 'kotlin-android-extensions'
 
+apply plugin: 'kotlin-kapt'
+
 android {
     compileSdkVersion 28
     defaultConfig {
@@ -53,4 +55,9 @@ dependencies {
 
     // flexbox
     implementation 'com.google.android:flexbox:1.1.0'
+
+    // room
+    implementation "androidx.room:room-runtime:2.1.0-alpha06"
+    kapt "androidx.room:room-compiler:2.1.0-alpha06"
+    implementation "androidx.room:room-rxjava2:2.1.0-alpha06"
 }
