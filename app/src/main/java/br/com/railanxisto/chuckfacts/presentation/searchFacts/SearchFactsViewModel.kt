@@ -4,6 +4,7 @@ import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import br.com.railanxisto.chuckfacts.data.remote.repositories.SearchFactsRepository
+import br.com.railanxisto.chuckfacts.domain.Category
 import br.com.railanxisto.chuckfacts.presentation.common.BaseViewModel
 import io.reactivex.Observable
 import io.reactivex.Scheduler
@@ -12,10 +13,10 @@ import io.reactivex.disposables.CompositeDisposable
 
 class SearchFactsViewModel(private val repository: SearchFactsRepository): BaseViewModel() {
 
-    private val categories = MutableLiveData<List<String>>()
+    private val categories = MutableLiveData<List<Category>>()
     private val scheduler = AndroidSchedulers.mainThread()
 
-    fun getCategories(): LiveData<List<String>> {
+    fun getCategories(): LiveData<List<Category>> {
         val disposable = repository
             .getCategories()
             .doOnSubscribe { isLoading.value = true }
@@ -29,7 +30,7 @@ class SearchFactsViewModel(private val repository: SearchFactsRepository): BaseV
         return categories
     }
 
-    fun getCategoriesList(): MutableLiveData<List<String>> {
+    fun getCategoriesList(): MutableLiveData<List<Category>> {
         return categories
     }
 

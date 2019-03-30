@@ -1,12 +1,13 @@
 package br.com.railanxisto.chuckfacts.data.remote.repositories
 
 import br.com.railanxisto.chuckfacts.data.remote.ChuckFactsService
+import br.com.railanxisto.chuckfacts.domain.Category
 import io.reactivex.Maybe
 import io.reactivex.schedulers.Schedulers
 import retrofit2.Response
 
 interface SearchFactsRepository {
-    fun getCategories(): Maybe<List<String>>
+    fun getCategories(): Maybe<List<Category>>
 
     fun saveSearch(term: String)
 
@@ -14,7 +15,7 @@ interface SearchFactsRepository {
 }
 
 class SearchFactsRepositoryImpl(val apiService: ChuckFactsService) : SearchFactsRepository {
-    override fun getCategories(): Maybe<List<String>> {
+    override fun getCategories(): Maybe<List<Category>> {
 
         val data = getCategoriesFromApi()
             .doOnSuccess {  }
@@ -37,7 +38,7 @@ class SearchFactsRepositoryImpl(val apiService: ChuckFactsService) : SearchFacts
         .getCategories()
         .filter { !it.isEmpty() }
         .map { list ->
-            list.map { it }
+            list.map { Category(it) }
         }
 
 }
