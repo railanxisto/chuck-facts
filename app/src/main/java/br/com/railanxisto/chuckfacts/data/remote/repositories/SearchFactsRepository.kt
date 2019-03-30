@@ -1,12 +1,12 @@
 package br.com.railanxisto.chuckfacts.data.remote.repositories
 
 import br.com.railanxisto.chuckfacts.data.remote.ChuckFactsService
-import br.com.railanxisto.chuckfacts.domain.Category
-import retrofit2.Call
+import io.reactivex.Maybe
+import io.reactivex.schedulers.Schedulers
 import retrofit2.Response
 
 interface SearchFactsRepository {
-    fun getCategories(): Call<List<String>>
+    fun getCategories(): Maybe<List<String>>
 
     fun saveSearch(term: String)
 
@@ -14,9 +14,15 @@ interface SearchFactsRepository {
 }
 
 class SearchFactsRepositoryImpl(val apiService: ChuckFactsService) : SearchFactsRepository {
-    override fun getCategories(): Call<List<String>> {
-        println("aqui " + apiService.getCategories())
-        return apiService.getCategories()
+    override fun getCategories(): Maybe<List<String>> {
+
+        val data = getCategoriesFromApi()
+            .doOnSuccess {  }
+
+        return Maybe
+            .concat(data, data)
+            .subscribeOn(Schedulers.io())
+            .firstElement()
     }
 
     override fun saveSearch(term: String) {
@@ -26,5 +32,12 @@ class SearchFactsRepositoryImpl(val apiService: ChuckFactsService) : SearchFacts
     override fun getPastSearches(quantity: Int): Response<List<String>> {
         TODO("not implemented") //To change body of created functions use File | Settings | File Templates.
     }
+
+    private fun getCategoriesFromApi() = apiService
+        .getCategories()
+        .filter { !it.isEmpty() }
+        .map { list ->
+            list.map { it }
+        }
 
 }
