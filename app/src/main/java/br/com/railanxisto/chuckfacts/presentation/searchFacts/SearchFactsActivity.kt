@@ -6,8 +6,11 @@ import androidx.lifecycle.Observer
 import androidx.recyclerview.widget.LinearLayoutManager
 import br.com.railanxisto.chuckfacts.domain.Category
 import br.com.railanxisto.chuckfacts.presentation.common.BaseActivity
+import com.google.android.flexbox.FlexboxLayoutManager
 import kotlinx.android.synthetic.main.activity_search_facts.*
 import org.koin.android.ext.android.inject
+
+const val MAX_CATEGORIES = 8
 
 class SearchFactsActivity : BaseActivity(), CategoriesAdapter.OnItemAdapterClickListener {
 
@@ -26,18 +29,18 @@ class SearchFactsActivity : BaseActivity(), CategoriesAdapter.OnItemAdapterClick
     private fun initializeObservers() {
         viewModel.getCategoriesList().observe(this, Observer {
             setRecyclerView()
-            categoriesAdapter.setCategories(it)
+            categoriesAdapter.setCategories(it.shuffled().take(MAX_CATEGORIES))
         })
     }
 
     private fun setRecyclerView() {
         categoriesAdapter = CategoriesAdapter(this)
-        suggestionsRecyclerView.layoutManager = LinearLayoutManager(this)
+        suggestionsRecyclerView.layoutManager = FlexboxLayoutManager(this)
         suggestionsRecyclerView.setHasFixedSize(true)
         suggestionsRecyclerView.adapter = categoriesAdapter
     }
 
     override fun onItemClick(category: Category) {
-        TODO("not implemented") //To change body of created functions use File | Settings | File Templates.
+        finish()
     }
 }
