@@ -18,12 +18,13 @@ interface SearchFactsRepository {
 class SearchFactsRepositoryImpl(val apiService: ChuckFactsService, val categoryDao: CategoryDao) : SearchFactsRepository {
     override fun getCategories(): Maybe<List<Category>> {
 
-        val data = getCategoriesFromApi()
+        val data = getCategoriesFromDatabase()
+        /* val data = getCategoriesFromApi()
             .doOnSuccess { categoryDao.insertCategories(
                     it.map {
                         br.com.railanxisto.chuckfacts.data.local.model.Category(it.name)
                     })
-            }
+            } */
 
         return Maybe
             .concat(data, data)
@@ -38,6 +39,13 @@ class SearchFactsRepositoryImpl(val apiService: ChuckFactsService, val categoryD
     override fun getPastSearches(quantity: Int): Response<List<String>> {
         TODO("not implemented") //To change body of created functions use File | Settings | File Templates.
     }
+
+    private fun getCategoriesFromDatabase() = categoryDao
+        .getCategories()
+        .filter { !it.isEmpty() }
+        .map { list ->
+            list.map { Category(it.name) }
+        }
 
     private fun getCategoriesFromApi() = apiService
         .getCategories()
