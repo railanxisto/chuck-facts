@@ -2,6 +2,8 @@ package br.com.railanxisto.chuckfacts
 
 import android.app.Application
 import br.com.railanxisto.chuckfacts.di.networkModule
+import br.com.railanxisto.chuckfacts.di.presentationModule
+import br.com.railanxisto.chuckfacts.di.repositoryModule
 import org.koin.android.ext.koin.androidContext
 import org.koin.android.ext.koin.androidLogger
 import org.koin.core.context.startKoin
@@ -14,7 +16,7 @@ class MyApplication : Application() {
         startKoin {
             androidLogger()
             androidContext(this@MyApplication)
-            modules(networkModule)
+            modules(networkModule, presentationModule, repositoryModule)
         }
     }
 }
