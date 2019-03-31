@@ -1,4 +1,4 @@
-package br.com.railanxisto.chuckfacts.presentation.searchFacts
+package br.com.railanxisto.chuckfacts.presentation.searchFacts.adapters
 
 import android.view.LayoutInflater
 import android.view.View
@@ -38,7 +38,7 @@ class CategoriesAdapter(
 
     inner class CategoryViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
         fun setCategory(category: Category) {
-            itemView.categoryName.text = category.name
+            itemView.categoryTextView.text = category.name
         }
 
         fun setClickListener(clickListener: () -> Unit) {
