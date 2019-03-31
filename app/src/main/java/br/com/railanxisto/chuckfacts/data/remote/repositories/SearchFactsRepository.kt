@@ -10,8 +10,6 @@ import retrofit2.Response
 interface SearchFactsRepository {
     fun getCategories(): Maybe<List<Category>>
 
-    fun saveSearch(term: String)
-
     fun getPastSearches(quantity: Int): Response<List<String>>
 }
 
@@ -30,10 +28,6 @@ class SearchFactsRepositoryImpl(val apiService: ChuckFactsService, val categoryD
             .concat(data, dataFromApi)
             .subscribeOn(Schedulers.io())
             .firstElement()
-    }
-
-    override fun saveSearch(term: String) {
-        TODO("not implemented") //To change body of created functions use File | Settings | File Templates.
     }
 
     override fun getPastSearches(quantity: Int): Response<List<String>> {
