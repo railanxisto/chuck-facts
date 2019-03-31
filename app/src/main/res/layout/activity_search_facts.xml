@@ -1,66 +1,73 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout
+<ScrollView
         xmlns:android="http://schemas.android.com/apk/res/android"
         xmlns:app="http://schemas.android.com/apk/res-auto"
         xmlns:tools="http://schemas.android.com/tools"
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:padding="15dp"
-        tools:context=".presentation.searchFacts.SearchFactsActivity">
+        android:layout_height="wrap_content">
 
-    <EditText
-            android:id="@+id/searchEditText"
-            android:layout_width="0dp"
+    <androidx.constraintlayout.widget.ConstraintLayout
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:inputType="text"
-            android:imeOptions="actionDone"
-            android:hint="@string/search_hint"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent"
-            tools:ignore="Autofill"/>
+            android:padding="15dp"
+            tools:context=".presentation.searchFacts.SearchFactsActivity">
 
-    <TextView
-            android:id="@+id/titleSuggestionsTextView"
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:text="@string/suggestions_title"
-            android:textSize="18sp"
-            android:textStyle="bold"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.0"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/searchEditText" />
+        <EditText
+                android:id="@+id/searchEditText"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:inputType="text"
+                android:imeOptions="actionDone"
+                android:hint="@string/search_hint"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                tools:ignore="Autofill"/>
 
-    <androidx.recyclerview.widget.RecyclerView
-            android:id="@+id/suggestionsRecyclerView"
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="10dp"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/titleSuggestionsTextView" />
+        <TextView
+                android:id="@+id/titleSuggestionsTextView"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:text="@string/suggestions_title"
+                android:textSize="18sp"
+                android:textStyle="bold"
+                android:layout_marginTop="20dp"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_bias="0.0"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/searchEditText"/>
 
-    <TextView
-            android:id="@+id/titlePastSearchesTextView"
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:text="@string/past_searches_title"
-            android:textSize="18sp"
-            android:textStyle="bold"
-            android:layout_marginTop="10dp"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.0"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/suggestionsRecyclerView" />
+        <androidx.recyclerview.widget.RecyclerView
+                android:id="@+id/suggestionsRecyclerView"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="10dp"
+                app:layout_constraintEnd_toEndOf="parent"
+                android:nestedScrollingEnabled="false"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/titleSuggestionsTextView"/>
 
-    <androidx.recyclerview.widget.RecyclerView
-            android:id="@+id/pastSearchesRecyclerView"
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="10dp"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/titlePastSearchesTextView"/>
+        <TextView
+                android:id="@+id/titlePastSearchesTextView"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:text="@string/past_searches_title"
+                android:textSize="18sp"
+                android:textStyle="bold"
+                android:layout_marginTop="10dp"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_bias="0.0"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/suggestionsRecyclerView"/>
 
-</androidx.constraintlayout.widget.ConstraintLayout>
+        <androidx.recyclerview.widget.RecyclerView
+                android:id="@+id/pastSearchesRecyclerView"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="10dp"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/titlePastSearchesTextView"/>
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</ScrollView>

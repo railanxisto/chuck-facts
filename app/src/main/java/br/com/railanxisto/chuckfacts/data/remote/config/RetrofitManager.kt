@@ -6,6 +6,7 @@ import org.koin.core.KoinComponent
 import retrofit2.Retrofit
 import retrofit2.converter.gson.GsonConverterFactory
 import org.koin.core.inject
+import retrofit2.adapter.rxjava2.RxJava2CallAdapterFactory
 
 
 class RetrofitManager : KoinComponent {
@@ -16,6 +17,7 @@ class RetrofitManager : KoinComponent {
         return Retrofit.Builder()
             .baseUrl(ApiConstants.URL_BASE)
             .addConverterFactory(GsonConverterFactory.create())
+            .addCallAdapterFactory(RxJava2CallAdapterFactory.create())
             .client(httpClient)
             .build()
     }
