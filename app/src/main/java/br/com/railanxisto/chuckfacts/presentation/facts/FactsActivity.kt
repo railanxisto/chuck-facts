@@ -40,7 +40,6 @@ class FactsActivity : BaseActivity() {
 
     private fun initializeObservers() {
         viewModel.getFactsList().observe(this, Observer {
-            println("aqui teste 3")
             factsAdapter.setFacts(it)
         })
     }

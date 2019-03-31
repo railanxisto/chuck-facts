@@ -36,7 +36,7 @@ class FactsAdapter: RecyclerView.Adapter<FactsAdapter.FactsViewHolder>() {
         fun setFact(fact: Fact) {
             itemView.factTextView.text = fact.value
             itemView.categoryTextView.text = fact.getCategoryText()
-
+            itemView.factTextView.setTextSize(fact.getTextSize(fact.value))
         }
     }
 
