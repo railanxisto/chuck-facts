@@ -10,7 +10,6 @@ import io.reactivex.android.schedulers.AndroidSchedulers
 class FactsViewModel(private val repository: FactsRepository): BaseViewModel() {
 
     private val facts = MutableLiveData<List<Fact>>()
-    private val scheduler = AndroidSchedulers.mainThread()
 
     fun getFacts(): LiveData<List<Fact>> {
         val disposable = repository
@@ -26,7 +25,7 @@ class FactsViewModel(private val repository: FactsRepository): BaseViewModel() {
         return facts
     }
 
-    private fun saveSearch(term: String) {
+    fun saveSearch(term: String) {
         val disposable = repository
             .saveSearch(term)
             .observeOn(scheduler)

@@ -7,13 +7,17 @@ import android.os.Bundle
 import android.view.Menu
 import android.view.MenuItem
 import br.com.railanxisto.chuckfacts.R
+import br.com.railanxisto.chuckfacts.presentation.common.BaseActivity
 import br.com.railanxisto.chuckfacts.presentation.searchFacts.SearchFactsActivity
+import org.koin.android.ext.android.inject
 
-class FactsActivity : AppCompatActivity() {
+class FactsActivity : BaseActivity() {
 
     companion object {
         const val REQUEST_TERM = 0
     }
+
+    val viewModel: FactsViewModel by inject()
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -24,6 +28,7 @@ class FactsActivity : AppCompatActivity() {
         if (requestCode == REQUEST_TERM) {
             if (resultCode == Activity.RESULT_OK) {
                 val query = data?.getStringExtra(SearchFactsActivity.RESULT_TERM)
+                query?.let { viewModel.saveSearch(it) }
             }
             return
         }
