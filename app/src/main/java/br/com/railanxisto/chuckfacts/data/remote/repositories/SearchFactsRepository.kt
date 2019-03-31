@@ -19,15 +19,15 @@ class SearchFactsRepositoryImpl(val apiService: ChuckFactsService, val categoryD
     override fun getCategories(): Maybe<List<Category>> {
 
         val data = getCategoriesFromDatabase()
-        /* val data = getCategoriesFromApi()
+        val dataFromApi = getCategoriesFromApi()
             .doOnSuccess { categoryDao.insertCategories(
                     it.map {
                         br.com.railanxisto.chuckfacts.data.local.model.Category(it.name)
                     })
-            } */
+            }
 
         return Maybe
-            .concat(data, data)
+            .concat(data, dataFromApi)
             .subscribeOn(Schedulers.io())
             .firstElement()
     }
