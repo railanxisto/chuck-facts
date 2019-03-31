@@ -11,7 +11,7 @@ import io.reactivex.Single
 @Dao
 interface TermDao {
 
-    @Query("SELECT * FROM terms")
+    @Query("SELECT DISTINCT term FROM terms ORDER BY id DESC")
     fun getTerms(): Observable<List<Term>>
 
     @Insert
