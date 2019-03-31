@@ -1,6 +1,7 @@
 package br.com.railanxisto.chuckfacts.data.remote
 
 import br.com.railanxisto.chuckfacts.data.remote.config.RetrofitManager
+import br.com.railanxisto.chuckfacts.data.remote.model.FactsResponse
 import br.com.railanxisto.chuckfacts.domain.Fact
 import io.reactivex.Single
 import retrofit2.http.GET
@@ -19,5 +20,5 @@ interface ChuckFactsService {
     fun getCategories(): Single<List<String>>
 
     @GET("jokes/search")
-    fun getFacts(@Query("query") query: String): Single<List<Fact>>
+    fun getFacts(@Query("query") query: String): Single<FactsResponse>
 }

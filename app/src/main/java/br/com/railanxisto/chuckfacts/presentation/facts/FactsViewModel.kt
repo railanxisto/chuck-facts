@@ -18,7 +18,8 @@ class FactsViewModel(private val repository: FactsRepository): BaseViewModel() {
             .observeOn(scheduler)
             .doAfterTerminate { isLoading.value = false }
             .subscribe({
-                facts.value = it
+                println("aqui 222 " + it.result)
+                facts.value = it.result
             }, {error.value = "Error"})
 
         disposables.add(disposable)
