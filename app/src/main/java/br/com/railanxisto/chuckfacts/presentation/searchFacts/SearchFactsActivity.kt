@@ -4,6 +4,7 @@ import android.app.Activity
 import android.content.Context
 import android.content.Intent
 import android.os.Bundle
+import android.view.inputmethod.EditorInfo
 import br.com.railanxisto.chuckfacts.R
 import androidx.lifecycle.Observer
 import androidx.recyclerview.widget.LinearLayoutManager
@@ -29,6 +30,14 @@ class SearchFactsActivity : BaseActivity(), CategoriesAdapter.OnItemAdapterClick
         setContentView(R.layout.activity_search_facts)
 
         viewModel.getCategories()
+        searchEditText.setOnEditorActionListener { _, actionId, _ ->
+            if (actionId == EditorInfo.IME_ACTION_DONE) {
+                sendTermForSearch(searchEditText.text?.toString() ?: "")
+                true
+            } else {
+                false
+            }
+        }
 
         initializeObservers()
     }
@@ -48,7 +57,11 @@ class SearchFactsActivity : BaseActivity(), CategoriesAdapter.OnItemAdapterClick
     }
 
     override fun onItemClick(category: Category) {
-        val intent = Intent().putExtra(RESULT_TERM, category.name.trim())
+        sendTermForSearch(category.name)
+    }
+
+    private fun sendTermForSearch(term: String) {
+        val intent = Intent().putExtra(RESULT_TERM, term)
         setResult(Activity.RESULT_OK, intent)
         finish()
     }
