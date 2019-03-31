@@ -1,5 +1,8 @@
 package br.com.railanxisto.chuckfacts.presentation.searchFacts
 
+import android.app.Activity
+import android.content.Context
+import android.content.Intent
 import android.os.Bundle
 import br.com.railanxisto.chuckfacts.R
 import androidx.lifecycle.Observer
@@ -13,6 +16,10 @@ import org.koin.android.ext.android.inject
 const val MAX_CATEGORIES = 8
 
 class SearchFactsActivity : BaseActivity(), CategoriesAdapter.OnItemAdapterClickListener {
+
+    companion object {
+        const val RESULT_TERM = "term"
+    }
 
     val viewModel: SearchFactsViewModel by inject()
     private lateinit var categoriesAdapter: CategoriesAdapter
@@ -41,6 +48,8 @@ class SearchFactsActivity : BaseActivity(), CategoriesAdapter.OnItemAdapterClick
     }
 
     override fun onItemClick(category: Category) {
+        val intent = Intent().putExtra(RESULT_TERM, category.name.trim())
+        setResult(Activity.RESULT_OK, intent)
         finish()
     }
 }
