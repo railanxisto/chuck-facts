@@ -6,6 +6,7 @@ import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.view.Menu
 import android.view.MenuItem
+import androidx.lifecycle.Observer
 import br.com.railanxisto.chuckfacts.R
 import br.com.railanxisto.chuckfacts.presentation.common.BaseActivity
 import br.com.railanxisto.chuckfacts.presentation.searchFacts.SearchFactsActivity
@@ -22,13 +23,26 @@ class FactsActivity : BaseActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
+
+        initializeObservers()
+    }
+
+    private fun initializeObservers() {
+        viewModel.getFactsList().observe(this, Observer {
+            // TODO
+        })
     }
 
     override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
         if (requestCode == REQUEST_TERM) {
             if (resultCode == Activity.RESULT_OK) {
                 val query = data?.getStringExtra(SearchFactsActivity.RESULT_TERM)
-                query?.let { viewModel.saveSearch(it) }
+                query?.let {
+                    if (query.length > 0) {
+                        viewModel.saveSearch(it)
+                        viewModel.getFacts(query)
+                    }
+                }
             }
             return
         }

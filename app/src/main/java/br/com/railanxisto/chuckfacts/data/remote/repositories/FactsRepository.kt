@@ -7,6 +7,7 @@ import br.com.railanxisto.chuckfacts.domain.Fact
 import io.reactivex.Completable
 import io.reactivex.Single
 import io.reactivex.schedulers.Schedulers
+import okhttp3.Response
 
 interface FactsRepository {
     fun saveSearch(term: String): Completable
@@ -16,7 +17,9 @@ interface FactsRepository {
 
 class FactsRepositoryImpl(val apiService: ChuckFactsService, val termDao: TermDao) : FactsRepository {
     override fun getFacts(term: String): Single<List<Fact>> {
-        TODO("not implemented") //To change body of created functions use File | Settings | File Templates.
+        return apiService
+            .getFacts(term)
+            .subscribeOn(Schedulers.io())
     }
 
     override fun saveSearch(term: String) = termDao

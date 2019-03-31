@@ -11,18 +11,17 @@ class FactsViewModel(private val repository: FactsRepository): BaseViewModel() {
 
     private val facts = MutableLiveData<List<Fact>>()
 
-    fun getFacts(): LiveData<List<Fact>> {
+    fun getFacts(term: String) {
         val disposable = repository
-            .getFacts(term = "")
+            .getFacts(term)
             .doOnSubscribe { isLoading.value = true }
             .observeOn(scheduler)
             .doAfterTerminate { isLoading.value = false }
             .subscribe({
-
+                facts.value = it
             }, {error.value = "Error"})
 
         disposables.add(disposable)
-        return facts
     }
 
     fun saveSearch(term: String) {
@@ -34,6 +33,10 @@ class FactsViewModel(private val repository: FactsRepository): BaseViewModel() {
             }
             .subscribe()
         disposables.add(disposable)
+    }
+
+    fun getFactsList(): LiveData<List<Fact>> {
+        return facts
     }
 
 }
