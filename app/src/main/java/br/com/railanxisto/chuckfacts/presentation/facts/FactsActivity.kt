@@ -9,13 +9,13 @@ import android.view.MenuItem
 import androidx.lifecycle.Observer
 import androidx.recyclerview.widget.LinearLayoutManager
 import br.com.railanxisto.chuckfacts.R
+import br.com.railanxisto.chuckfacts.domain.Fact
 import br.com.railanxisto.chuckfacts.presentation.common.BaseActivity
 import br.com.railanxisto.chuckfacts.presentation.searchFacts.SearchFactsActivity
 import kotlinx.android.synthetic.main.activity_main.*
 import org.koin.android.ext.android.inject
 
-class FactsActivity : BaseActivity() {
-
+class FactsActivity : BaseActivity(), FactsAdapter.ShareButtonClickListener {
     companion object {
         const val REQUEST_TERM = 0
     }
@@ -32,7 +32,7 @@ class FactsActivity : BaseActivity() {
     }
 
     private fun setCategoriesRecyclerView() {
-        factsAdapter = FactsAdapter()
+        factsAdapter = FactsAdapter(this)
         factsRecyclerView.layoutManager = LinearLayoutManager(this)
         factsRecyclerView.setHasFixedSize(true)
         factsRecyclerView.adapter = factsAdapter
@@ -44,12 +44,19 @@ class FactsActivity : BaseActivity() {
         })
     }
 
+    override fun onShareButtonClick(fact: Fact) {
+        val intent = Intent(android.content.Intent.ACTION_SEND)
+        intent.type = "text/plain"
+        intent.putExtra(android.content.Intent.EXTRA_TEXT, fact.value)
+        startActivity(Intent.createChooser(intent, getString(R.string.share_on)))
+    }
+
     override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
         if (requestCode == REQUEST_TERM) {
             if (resultCode == Activity.RESULT_OK) {
                 val query = data?.getStringExtra(SearchFactsActivity.RESULT_TERM)
                 query?.let {
-                    if (query.length > 0) {
+                    if (query.isNotEmpty()) {
                         viewModel.saveSearch(it)
                         viewModel.getFacts(query)
                     }

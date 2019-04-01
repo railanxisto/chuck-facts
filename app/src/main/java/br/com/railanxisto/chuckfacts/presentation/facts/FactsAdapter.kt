@@ -9,7 +9,9 @@ import br.com.railanxisto.chuckfacts.domain.Fact
 import kotlinx.android.synthetic.main.fact_item.view.*
 import kotlinx.android.synthetic.main.past_terms_item.view.*
 
-class FactsAdapter: RecyclerView.Adapter<FactsAdapter.FactsViewHolder>() {
+class FactsAdapter(
+    val listener: ShareButtonClickListener
+): RecyclerView.Adapter<FactsAdapter.FactsViewHolder>() {
 
     private val facts = mutableListOf<Fact>()
 
@@ -23,6 +25,9 @@ class FactsAdapter: RecyclerView.Adapter<FactsAdapter.FactsViewHolder>() {
     override fun onBindViewHolder(holder: FactsViewHolder, position: Int) {
         facts[position].run {
             holder.setFact(this)
+            holder.setShareButtonClickListener {
+                listener.onShareButtonClick(this)
+            }
         }
     }
 
@@ -38,9 +43,17 @@ class FactsAdapter: RecyclerView.Adapter<FactsAdapter.FactsViewHolder>() {
             itemView.categoryTextView.text = fact.getCategoryText()
             itemView.factTextView.setTextSize(fact.getTextSize(fact.value))
         }
+
+        fun setShareButtonClickListener(clickListener: () -> Unit) {
+            itemView.shareButton.setOnClickListener {
+                clickListener()
+            }
+        }
     }
 
-    interface OnItemAdapterClickListener {
-        fun onItemClick(fact: Fact)
+    interface ShareButtonClickListener {
+        fun onShareButtonClick(fact: Fact)
     }
 }
+
+
