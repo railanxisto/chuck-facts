@@ -6,9 +6,12 @@ import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.view.Menu
 import android.view.MenuItem
+import androidx.lifecycle.Observer
+import androidx.recyclerview.widget.LinearLayoutManager
 import br.com.railanxisto.chuckfacts.R
 import br.com.railanxisto.chuckfacts.presentation.common.BaseActivity
 import br.com.railanxisto.chuckfacts.presentation.searchFacts.SearchFactsActivity
+import kotlinx.android.synthetic.main.activity_main.*
 import org.koin.android.ext.android.inject
 
 class FactsActivity : BaseActivity() {
@@ -18,17 +21,39 @@ class FactsActivity : BaseActivity() {
     }
 
     val viewModel: FactsViewModel by inject()
+    private lateinit var factsAdapter: FactsAdapter
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
+
+        setCategoriesRecyclerView()
+        initializeObservers()
+    }
+
+    private fun setCategoriesRecyclerView() {
+        factsAdapter = FactsAdapter()
+        factsRecyclerView.layoutManager = LinearLayoutManager(this)
+        factsRecyclerView.setHasFixedSize(true)
+        factsRecyclerView.adapter = factsAdapter
+    }
+
+    private fun initializeObservers() {
+        viewModel.getFactsList().observe(this, Observer {
+            factsAdapter.setFacts(it)
+        })
     }
 
     override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
         if (requestCode == REQUEST_TERM) {
             if (resultCode == Activity.RESULT_OK) {
                 val query = data?.getStringExtra(SearchFactsActivity.RESULT_TERM)
-                query?.let { viewModel.saveSearch(it) }
+                query?.let {
+                    if (query.length > 0) {
+                        viewModel.saveSearch(it)
+                        viewModel.getFacts(query)
+                    }
+                }
             }
             return
         }
