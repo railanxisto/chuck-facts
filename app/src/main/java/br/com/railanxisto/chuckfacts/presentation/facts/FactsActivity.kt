@@ -11,6 +11,7 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import br.com.railanxisto.chuckfacts.R
 import br.com.railanxisto.chuckfacts.presentation.common.BaseActivity
 import br.com.railanxisto.chuckfacts.presentation.searchFacts.SearchFactsActivity
+import br.com.railanxisto.chuckfacts.presentation.utils.isConnected
 import kotlinx.android.synthetic.main.activity_main.*
 import org.koin.android.ext.android.inject
 
@@ -29,6 +30,10 @@ class FactsActivity : BaseActivity() {
 
         setCategoriesRecyclerView()
         initializeObservers()
+
+        if (!isConnected()) {
+            showSnackbar(R.string.no_internet_message)
+        }
     }
 
     private fun setCategoriesRecyclerView() {
