@@ -1,0 +1,59 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout
+        android:id="@+id/loadingErrorLayout"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        xmlns:android="http://schemas.android.com/apk/res/android"
+        xmlns:tools="http://schemas.android.com/tools">
+
+    <ProgressBar
+            android:id="@+id/progressBar"
+            android:visibility="visible"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerInParent="true"
+            android:indeterminate="true" />
+
+    <LinearLayout
+            android:id="@+id/errorLayout"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_centerInParent="true"
+            android:layout_marginStart="30dp"
+            android:layout_marginLeft="30dp"
+            android:layout_marginEnd="30dp"
+            android:layout_marginRight="30dp"
+            android:orientation="vertical"
+            android:visibility="gone">
+
+        <ImageView
+                android:layout_width="45dp"
+                android:layout_height="45dp"
+                android:layout_gravity="center_horizontal"
+                android:src="@drawable/ic_error"
+                tools:ignore="ContentDescription" />
+
+        <TextView
+                android:id="@+id/txtMsgErro"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="10dp"
+                android:text="An unexpected error occurred"
+                android:textAlignment="center"
+                android:textColor="@color/black"
+                android:textSize="20sp"/>
+
+        <TextView
+                android:id="@+id/tryAgainTextView"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Try Again"
+                android:textAllCaps="false"
+                android:layout_gravity="center"
+                android:padding="10dp"
+                android:textColor="@color/category_color"
+                android:textSize="14sp" />
+
+    </LinearLayout>
+
+</RelativeLayout>

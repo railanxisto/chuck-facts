@@ -6,12 +6,15 @@ import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.view.Menu
 import android.view.MenuItem
+import android.view.View
 import androidx.lifecycle.Observer
 import androidx.recyclerview.widget.LinearLayoutManager
 import br.com.railanxisto.chuckfacts.R
 import br.com.railanxisto.chuckfacts.presentation.common.BaseActivity
 import br.com.railanxisto.chuckfacts.presentation.searchFacts.SearchFactsActivity
+import br.com.railanxisto.chuckfacts.presentation.utils.hide
 import br.com.railanxisto.chuckfacts.presentation.utils.isConnected
+import br.com.railanxisto.chuckfacts.presentation.utils.show
 import kotlinx.android.synthetic.main.activity_main.*
 import org.koin.android.ext.android.inject
 
@@ -46,6 +49,16 @@ class FactsActivity : BaseActivity() {
     private fun initializeObservers() {
         viewModel.getFactsList().observe(this, Observer {
             factsAdapter.setFacts(it)
+        })
+
+        viewModel.isLoading.observe(this, Observer {
+            if (it) {
+                loadingErrorView.show()
+                factsRecyclerView.hide()
+            } else {
+                factsRecyclerView.show()
+                loadingErrorView.hide()
+            }
         })
     }
 
