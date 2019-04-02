@@ -1,4 +1,4 @@
-package br.com.railanxisto.chuckfacts.presentation.utils
+package br.com.railanxisto.chuckfacts.presentation.utils.ext
 
 import android.content.Context
 import android.net.ConnectivityManager

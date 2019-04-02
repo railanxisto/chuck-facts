@@ -4,7 +4,6 @@ import android.app.Activity
 import android.content.Intent
 import android.os.Bundle
 import android.view.inputmethod.EditorInfo
-import android.widget.LinearLayout
 import androidx.lifecycle.Observer
 import androidx.recyclerview.widget.LinearLayoutManager
 import br.com.railanxisto.chuckfacts.R
@@ -13,7 +12,7 @@ import br.com.railanxisto.chuckfacts.domain.Category
 import br.com.railanxisto.chuckfacts.presentation.common.BaseActivity
 import br.com.railanxisto.chuckfacts.presentation.searchFacts.adapters.CategoriesAdapter
 import br.com.railanxisto.chuckfacts.presentation.searchFacts.adapters.PastTermsAdapter
-import br.com.railanxisto.chuckfacts.presentation.utils.isConnected
+import br.com.railanxisto.chuckfacts.presentation.utils.ext.isConnected
 import com.google.android.flexbox.FlexboxLayoutManager
 import kotlinx.android.synthetic.main.activity_search_facts.*
 import org.koin.android.ext.android.inject

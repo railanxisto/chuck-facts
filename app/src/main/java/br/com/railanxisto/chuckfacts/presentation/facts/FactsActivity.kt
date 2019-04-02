@@ -2,20 +2,19 @@ package br.com.railanxisto.chuckfacts.presentation.facts
 
 import android.app.Activity
 import android.content.Intent
-import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.view.Menu
 import android.view.MenuItem
-import android.view.View
 import androidx.lifecycle.Observer
 import androidx.recyclerview.widget.LinearLayoutManager
 import br.com.railanxisto.chuckfacts.R
 import br.com.railanxisto.chuckfacts.presentation.common.BaseActivity
 import br.com.railanxisto.chuckfacts.presentation.searchFacts.SearchFactsActivity
-import br.com.railanxisto.chuckfacts.presentation.utils.hide
-import br.com.railanxisto.chuckfacts.presentation.utils.isConnected
-import br.com.railanxisto.chuckfacts.presentation.utils.show
+import br.com.railanxisto.chuckfacts.presentation.utils.ext.hide
+import br.com.railanxisto.chuckfacts.presentation.utils.ext.isConnected
+import br.com.railanxisto.chuckfacts.presentation.utils.ext.show
 import kotlinx.android.synthetic.main.activity_main.*
+import kotlinx.android.synthetic.main.loading_error_view.view.*
 import org.koin.android.ext.android.inject
 
 class FactsActivity : BaseActivity() {
@@ -58,6 +57,16 @@ class FactsActivity : BaseActivity() {
             } else {
                 factsRecyclerView.show()
                 loadingErrorView.hide()
+            }
+        })
+
+        viewModel.error.observe(this, Observer{
+            if (it.isNotEmpty()) {
+                factsRecyclerView.hide()
+                loadingErrorView.progressBar.hide()
+                loadingErrorView.erroDescriptionTextView.text = it
+                loadingErrorView.errorLayout.show()
+                loadingErrorView.show()
             }
         })
     }

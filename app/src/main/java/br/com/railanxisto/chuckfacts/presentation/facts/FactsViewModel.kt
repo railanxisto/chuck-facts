@@ -5,6 +5,7 @@ import androidx.lifecycle.MutableLiveData
 import br.com.railanxisto.chuckfacts.data.remote.repositories.FactsRepository
 import br.com.railanxisto.chuckfacts.domain.Fact
 import br.com.railanxisto.chuckfacts.presentation.common.BaseViewModel
+import br.com.railanxisto.chuckfacts.presentation.utils.ext.getRestErrorMessage
 
 class FactsViewModel(private val repository: FactsRepository): BaseViewModel() {
 
@@ -15,10 +16,13 @@ class FactsViewModel(private val repository: FactsRepository): BaseViewModel() {
             .getFacts(term)
             .doOnSubscribe { isLoading.value = true }
             .observeOn(scheduler)
-            .doAfterTerminate { isLoading.value = false }
             .subscribe({
                 facts.value = it.result
-            }, {error.value = "Error"})
+                isLoading.value = false
+            }, {
+                isLoading.value = false
+                error.value = it.getRestErrorMessage()
+            })
 
         disposables.add(disposable)
     }
