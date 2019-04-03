@@ -15,7 +15,7 @@ import br.com.railanxisto.chuckfacts.presentation.searchFacts.adapters.PastTerms
 import br.com.railanxisto.chuckfacts.presentation.utils.ext.isConnected
 import com.google.android.flexbox.FlexboxLayoutManager
 import kotlinx.android.synthetic.main.activity_search_facts.*
-import org.koin.android.ext.android.inject
+import org.koin.android.viewmodel.ext.android.viewModel
 
 const val MAX_CATEGORIES = 8
 
@@ -26,7 +26,7 @@ class SearchFactsActivity : BaseActivity(), CategoriesAdapter.OnItemAdapterClick
         const val RESULT_TERM = "term"
     }
 
-    val viewModel: SearchFactsViewModel by inject()
+    val viewModel: SearchFactsViewModel by viewModel()
     private lateinit var categoriesAdapter: CategoriesAdapter
     private lateinit var pastTermsAdapter: PastTermsAdapter
 
