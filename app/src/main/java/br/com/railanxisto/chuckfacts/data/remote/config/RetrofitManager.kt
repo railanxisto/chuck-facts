@@ -8,7 +8,6 @@ import retrofit2.converter.gson.GsonConverterFactory
 import org.koin.core.inject
 import retrofit2.adapter.rxjava2.RxJava2CallAdapterFactory
 
-
 class RetrofitManager : KoinComponent {
 
     val httpClient: OkHttpClient by inject()

@@ -11,7 +11,7 @@ import kotlinx.android.synthetic.main.past_terms_item.view.*
 
 class FactsAdapter(
     val listener: ShareButtonClickListener
-): RecyclerView.Adapter<FactsAdapter.FactsViewHolder>() {
+) : RecyclerView.Adapter<FactsAdapter.FactsViewHolder>() {
 
     private val facts = mutableListOf<Fact>()
 
@@ -55,5 +55,3 @@ class FactsAdapter(
         fun onShareButtonClick(fact: Fact)
     }
 }
-
-

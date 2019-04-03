@@ -2,7 +2,6 @@ package br.com.railanxisto.chuckfacts.data.remote
 
 import br.com.railanxisto.chuckfacts.data.remote.config.RetrofitManager
 import br.com.railanxisto.chuckfacts.data.remote.model.FactsResponse
-import br.com.railanxisto.chuckfacts.domain.Fact
 import io.reactivex.Single
 import retrofit2.http.GET
 import retrofit2.http.Query

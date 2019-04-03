@@ -6,7 +6,6 @@ import br.com.railanxisto.chuckfacts.presentation.utils.SingleLiveEvent
 import io.reactivex.android.schedulers.AndroidSchedulers
 import io.reactivex.disposables.CompositeDisposable
 
-
 abstract class BaseViewModel : ViewModel() {
     val disposables = CompositeDisposable()
     val isLoading = SingleLiveEvent<Boolean>()
