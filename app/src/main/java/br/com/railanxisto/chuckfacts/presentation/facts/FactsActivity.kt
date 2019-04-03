@@ -61,7 +61,7 @@ class FactsActivity : BaseActivity(), FactsAdapter.ShareButtonClickListener {
             }
         })
 
-        viewModel.error.observe(this, Observer{
+        viewModel.error.observe(this, Observer {
             if (it.isNotEmpty()) {
                 factsRecyclerView.hide()
                 loadingErrorView.progressBar.hide()
@@ -71,7 +71,7 @@ class FactsActivity : BaseActivity(), FactsAdapter.ShareButtonClickListener {
             }
         })
 
-        viewModel.isEmpty.observe(this, Observer{
+        viewModel.isEmpty.observe(this, Observer {
             if (it) {
                 factsAdapter.setFacts(listOf())
                 Toast.makeText(this, R.string.no_results, Toast.LENGTH_LONG).show()

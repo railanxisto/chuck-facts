@@ -7,7 +7,7 @@ import br.com.railanxisto.chuckfacts.domain.Fact
 import br.com.railanxisto.chuckfacts.presentation.common.BaseViewModel
 import br.com.railanxisto.chuckfacts.presentation.utils.ext.getRestErrorMessage
 
-class FactsViewModel(private val repository: FactsRepository): BaseViewModel() {
+class FactsViewModel(private val repository: FactsRepository) : BaseViewModel() {
 
     private val facts = MutableLiveData<List<Fact>>()
 
@@ -45,5 +45,4 @@ class FactsViewModel(private val repository: FactsRepository): BaseViewModel() {
     fun getFactsList(): LiveData<List<Fact>> {
         return facts
     }
-
 }

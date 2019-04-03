@@ -6,7 +6,6 @@ import androidx.room.Query
 import br.com.railanxisto.chuckfacts.data.local.model.Term
 import io.reactivex.Completable
 import io.reactivex.Observable
-import io.reactivex.Single
 
 @Dao
 interface TermDao {
