@@ -12,6 +12,4 @@ fun Throwable.getRestErrorMessage(): String {
     } else {
         return "An unexpected error ocurred"
     }
-
-
 }

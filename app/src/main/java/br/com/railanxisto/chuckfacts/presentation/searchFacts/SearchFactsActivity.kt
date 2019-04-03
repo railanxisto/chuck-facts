@@ -19,7 +19,8 @@ import org.koin.android.ext.android.inject
 
 const val MAX_CATEGORIES = 8
 
-class SearchFactsActivity : BaseActivity(), CategoriesAdapter.OnItemAdapterClickListener, PastTermsAdapter.OnItemAdapterClickListener {
+class SearchFactsActivity : BaseActivity(), CategoriesAdapter.OnItemAdapterClickListener,
+    PastTermsAdapter.OnItemAdapterClickListener {
 
     companion object {
         const val RESULT_TERM = "term"
@@ -92,6 +93,5 @@ class SearchFactsActivity : BaseActivity(), CategoriesAdapter.OnItemAdapterClick
         } else {
             showSnackbar(R.string.no_internet_message)
         }
-
     }
 }

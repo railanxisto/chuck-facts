@@ -8,7 +8,6 @@ import br.com.railanxisto.chuckfacts.domain.Category
 import io.reactivex.Maybe
 import io.reactivex.Observable
 import io.reactivex.schedulers.Schedulers
-import retrofit2.Response
 
 interface SearchFactsRepository {
     fun getCategories(): Maybe<List<Category>>
@@ -33,7 +32,6 @@ class SearchFactsRepositoryImpl(val apiService: ChuckFactsService, val categoryD
             .firstElement()
     }
 
-
     override fun getPastSearches(): Observable<List<Term>> = termDao
         .getTerms()
         .subscribeOn(Schedulers.io())
@@ -51,5 +49,4 @@ class SearchFactsRepositoryImpl(val apiService: ChuckFactsService, val categoryD
         .map { list ->
             list.map { Category(it) }
         }
-
 }

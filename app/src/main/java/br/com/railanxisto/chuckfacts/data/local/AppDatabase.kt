@@ -9,9 +9,7 @@ import br.com.railanxisto.chuckfacts.data.local.model.Term
 
 @Database(entities = [Category::class, Term::class], version = 1)
 abstract class AppDatabase : RoomDatabase() {
-
     abstract fun categoryDao(): CategoryDao
 
     abstract fun termDao(): TermDao
-
 }

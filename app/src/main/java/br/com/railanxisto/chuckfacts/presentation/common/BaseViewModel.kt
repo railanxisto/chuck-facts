@@ -5,7 +5,6 @@ import androidx.lifecycle.ViewModel
 import io.reactivex.android.schedulers.AndroidSchedulers
 import io.reactivex.disposables.CompositeDisposable
 
-
 abstract class BaseViewModel : ViewModel() {
     val disposables = CompositeDisposable()
     val isLoading = MutableLiveData<Boolean>()

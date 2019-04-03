@@ -4,11 +4,9 @@ import br.com.railanxisto.chuckfacts.data.local.DAO.TermDao
 import br.com.railanxisto.chuckfacts.data.local.model.Term
 import br.com.railanxisto.chuckfacts.data.remote.ChuckFactsService
 import br.com.railanxisto.chuckfacts.data.remote.model.FactsResponse
-import br.com.railanxisto.chuckfacts.domain.Fact
 import io.reactivex.Completable
 import io.reactivex.Single
 import io.reactivex.schedulers.Schedulers
-import okhttp3.Response
 
 interface FactsRepository {
     fun saveSearch(term: String): Completable

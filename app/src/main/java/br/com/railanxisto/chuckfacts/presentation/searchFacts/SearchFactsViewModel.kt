@@ -2,22 +2,17 @@ package br.com.railanxisto.chuckfacts.presentation.searchFacts
 
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
-import androidx.lifecycle.ViewModel
 import br.com.railanxisto.chuckfacts.data.local.model.Term
 import br.com.railanxisto.chuckfacts.data.remote.repositories.SearchFactsRepository
 import br.com.railanxisto.chuckfacts.domain.Category
 import br.com.railanxisto.chuckfacts.presentation.common.BaseViewModel
-import io.reactivex.Observable
-import io.reactivex.Scheduler
-import io.reactivex.android.schedulers.AndroidSchedulers
-import io.reactivex.disposables.CompositeDisposable
 
-class SearchFactsViewModel(private val repository: SearchFactsRepository): BaseViewModel() {
+class SearchFactsViewModel(private val repository: SearchFactsRepository) : BaseViewModel() {
 
     private val categories = MutableLiveData<List<Category>>()
     private val pastTerms = MutableLiveData<List<Term>>()
 
-    fun getCategories(){
+    fun getCategories() {
         val disposable = repository
             .getCategories()
             .doOnSubscribe { isLoading.value = true }
@@ -25,7 +20,7 @@ class SearchFactsViewModel(private val repository: SearchFactsRepository): BaseV
             .doAfterTerminate { isLoading.value = false }
             .subscribe({
                 categories.value = it
-            }, {error.value = "Error"})
+            }, { error.value = "Error" })
 
         disposables.add(disposable)
     }
@@ -36,7 +31,7 @@ class SearchFactsViewModel(private val repository: SearchFactsRepository): BaseV
             .observeOn(scheduler)
             .subscribe({
                 pastTerms.value = it
-            }, {error.value = "Error"})
+            }, { error.value = "Error" })
 
         disposables.add(disposable)
     }
@@ -48,5 +43,4 @@ class SearchFactsViewModel(private val repository: SearchFactsRepository): BaseV
     fun getCategoriesList(): MutableLiveData<List<Category>> {
         return categories
     }
-
 }
