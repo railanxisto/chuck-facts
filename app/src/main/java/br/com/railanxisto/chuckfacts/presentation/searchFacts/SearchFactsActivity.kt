@@ -4,7 +4,6 @@ import android.app.Activity
 import android.content.Intent
 import android.os.Bundle
 import android.view.inputmethod.EditorInfo
-import android.widget.LinearLayout
 import androidx.lifecycle.Observer
 import androidx.recyclerview.widget.LinearLayoutManager
 import br.com.railanxisto.chuckfacts.R
@@ -13,6 +12,7 @@ import br.com.railanxisto.chuckfacts.domain.Category
 import br.com.railanxisto.chuckfacts.presentation.common.BaseActivity
 import br.com.railanxisto.chuckfacts.presentation.searchFacts.adapters.CategoriesAdapter
 import br.com.railanxisto.chuckfacts.presentation.searchFacts.adapters.PastTermsAdapter
+import br.com.railanxisto.chuckfacts.presentation.utils.ext.isConnected
 import com.google.android.flexbox.FlexboxLayoutManager
 import kotlinx.android.synthetic.main.activity_search_facts.*
 import org.koin.android.ext.android.inject
@@ -64,6 +64,7 @@ class SearchFactsActivity : BaseActivity(), CategoriesAdapter.OnItemAdapterClick
         categoriesAdapter = CategoriesAdapter(this)
         suggestionsRecyclerView.layoutManager = FlexboxLayoutManager(this)
         suggestionsRecyclerView.setHasFixedSize(true)
+        suggestionsRecyclerView.isNestedScrollingEnabled = false
         suggestionsRecyclerView.adapter = categoriesAdapter
     }
 
@@ -71,6 +72,7 @@ class SearchFactsActivity : BaseActivity(), CategoriesAdapter.OnItemAdapterClick
         pastTermsAdapter = PastTermsAdapter(this)
         pastSearchesRecyclerView.layoutManager = LinearLayoutManager(this)
         pastSearchesRecyclerView.setHasFixedSize(true)
+        pastSearchesRecyclerView.isNestedScrollingEnabled = false
         pastSearchesRecyclerView.adapter = pastTermsAdapter
     }
 
@@ -83,8 +85,13 @@ class SearchFactsActivity : BaseActivity(), CategoriesAdapter.OnItemAdapterClick
     }
 
     private fun sendTermForSearch(term: String) {
-        val intent = Intent().putExtra(RESULT_TERM, term)
-        setResult(Activity.RESULT_OK, intent)
-        finish()
+        if (isConnected()) {
+            val intent = Intent().putExtra(RESULT_TERM, term)
+            setResult(Activity.RESULT_OK, intent)
+            finish()
+        } else {
+            showSnackbar(R.string.no_internet_message)
+        }
+
     }
 }
