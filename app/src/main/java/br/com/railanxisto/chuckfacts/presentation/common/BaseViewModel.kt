@@ -1,6 +1,5 @@
 package br.com.railanxisto.chuckfacts.presentation.common
 
-import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import br.com.railanxisto.chuckfacts.presentation.utils.SingleLiveEvent
 import io.reactivex.android.schedulers.AndroidSchedulers
