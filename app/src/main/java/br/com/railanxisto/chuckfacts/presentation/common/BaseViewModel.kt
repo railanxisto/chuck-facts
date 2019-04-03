@@ -10,6 +10,7 @@ abstract class BaseViewModel : ViewModel() {
     val disposables = CompositeDisposable()
     val isLoading = MutableLiveData<Boolean>()
     val error = MutableLiveData<String>()
+    val isEmpty = MutableLiveData<Boolean>()
     val scheduler = AndroidSchedulers.mainThread()
 
     override fun onCleared() {

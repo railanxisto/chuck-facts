@@ -5,6 +5,7 @@ import android.content.Intent
 import android.os.Bundle
 import android.view.Menu
 import android.view.MenuItem
+import android.widget.Toast
 import androidx.lifecycle.Observer
 import androidx.recyclerview.widget.LinearLayoutManager
 import br.com.railanxisto.chuckfacts.R
@@ -69,6 +70,13 @@ class FactsActivity : BaseActivity() {
                 loadingErrorView.show()
             }
         })
+
+        viewModel.isEmpty.observe(this, Observer{
+            if (it) {
+                factsAdapter.setFacts(listOf())
+                Toast.makeText(this, R.string.no_results, Toast.LENGTH_LONG).show()
+            }
+        })
     }
 
     override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
@@ -76,7 +84,7 @@ class FactsActivity : BaseActivity() {
             if (resultCode == Activity.RESULT_OK) {
                 val query = data?.getStringExtra(SearchFactsActivity.RESULT_TERM)
                 query?.let {
-                    if (query.length > 0) {
+                    if (query.isNotEmpty()) {
                         viewModel.saveSearch(it)
                         viewModel.getFacts(query)
                     }

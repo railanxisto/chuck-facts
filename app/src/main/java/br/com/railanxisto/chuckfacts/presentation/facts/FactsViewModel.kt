@@ -17,7 +17,11 @@ class FactsViewModel(private val repository: FactsRepository): BaseViewModel() {
             .doOnSubscribe { isLoading.value = true }
             .observeOn(scheduler)
             .subscribe({
-                facts.value = it.result
+                if (it.result.isEmpty()) {
+                    isEmpty.value = true
+                } else {
+                    facts.value = it.result
+                }
                 isLoading.value = false
             }, {
                 isLoading.value = false
