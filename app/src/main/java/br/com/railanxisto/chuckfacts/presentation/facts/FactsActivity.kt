@@ -9,6 +9,7 @@ import android.widget.Toast
 import androidx.lifecycle.Observer
 import androidx.recyclerview.widget.LinearLayoutManager
 import br.com.railanxisto.chuckfacts.R
+import br.com.railanxisto.chuckfacts.domain.Fact
 import br.com.railanxisto.chuckfacts.presentation.common.BaseActivity
 import br.com.railanxisto.chuckfacts.presentation.searchFacts.SearchFactsActivity
 import br.com.railanxisto.chuckfacts.presentation.utils.ext.hide
@@ -18,8 +19,7 @@ import kotlinx.android.synthetic.main.activity_main.*
 import kotlinx.android.synthetic.main.loading_error_view.view.*
 import org.koin.android.ext.android.inject
 
-class FactsActivity : BaseActivity() {
-
+class FactsActivity : BaseActivity(), FactsAdapter.ShareButtonClickListener {
     companion object {
         const val REQUEST_TERM = 0
     }
@@ -40,7 +40,7 @@ class FactsActivity : BaseActivity() {
     }
 
     private fun setCategoriesRecyclerView() {
-        factsAdapter = FactsAdapter()
+        factsAdapter = FactsAdapter(this)
         factsRecyclerView.layoutManager = LinearLayoutManager(this)
         factsRecyclerView.setHasFixedSize(true)
         factsRecyclerView.adapter = factsAdapter
@@ -77,6 +77,13 @@ class FactsActivity : BaseActivity() {
                 Toast.makeText(this, R.string.no_results, Toast.LENGTH_LONG).show()
             }
         })
+    }
+
+    override fun onShareButtonClick(fact: Fact) {
+        val intent = Intent(android.content.Intent.ACTION_SEND)
+        intent.type = "text/plain"
+        intent.putExtra(android.content.Intent.EXTRA_TEXT, fact.value)
+        startActivity(Intent.createChooser(intent, getString(R.string.share_on)))
     }
 
     override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {

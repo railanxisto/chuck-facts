@@ -8,4 +8,5 @@
     <string name="uncategorized">UNCATEGORIZED</string>
     <string name="no_internet_message">No Internet Connection</string>
     <string name="no_results">No results found for the term</string>
+    <string name="share_on">Share on</string>
 </resources>
