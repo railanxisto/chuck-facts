@@ -17,14 +17,14 @@ import br.com.railanxisto.chuckfacts.presentation.utils.ext.isConnected
 import br.com.railanxisto.chuckfacts.presentation.utils.ext.show
 import kotlinx.android.synthetic.main.activity_main.*
 import kotlinx.android.synthetic.main.loading_error_view.view.*
-import org.koin.android.ext.android.inject
+import org.koin.android.viewmodel.ext.android.viewModel
 
 class FactsActivity : BaseActivity(), FactsAdapter.ShareButtonClickListener {
     companion object {
         const val REQUEST_TERM = 0
     }
 
-    val viewModel: FactsViewModel by inject()
+    val viewModel: FactsViewModel by viewModel()
     private lateinit var factsAdapter: FactsAdapter
 
     override fun onCreate(savedInstanceState: Bundle?) {
