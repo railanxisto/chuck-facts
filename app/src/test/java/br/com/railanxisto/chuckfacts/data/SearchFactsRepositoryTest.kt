@@ -1,4 +1,4 @@
-package br.com.railanxisto.chuckfacts
+package br.com.railanxisto.chuckfacts.data
 
 import br.com.railanxisto.chuckfacts.data.local.DAO.CategoryDao
 import br.com.railanxisto.chuckfacts.data.local.DAO.TermDao

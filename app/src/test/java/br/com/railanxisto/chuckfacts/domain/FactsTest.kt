@@ -1,6 +1,5 @@
-package br.com.railanxisto.chuckfacts
+package br.com.railanxisto.chuckfacts.domain
 
-import br.com.railanxisto.chuckfacts.domain.Fact
 import org.junit.Assert
 import org.junit.Test
 import br.com.railanxisto.chuckfacts.presentation.utils.Constants
