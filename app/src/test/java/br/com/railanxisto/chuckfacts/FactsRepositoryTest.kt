@@ -7,25 +7,18 @@ import br.com.railanxisto.chuckfacts.data.remote.repositories.FactsRepositoryImp
 import br.com.railanxisto.chuckfacts.domain.Fact
 import io.reactivex.Single
 import org.junit.Assert
-import org.junit.Before
 import org.junit.Test
 import org.junit.runner.RunWith
+import org.koin.test.AutoCloseKoinTest
 import org.mockito.Mockito.`when`
 import org.mockito.Mockito.mock
-import org.mockito.MockitoAnnotations
 import org.robolectric.RobolectricTestRunner
 
 @RunWith(RobolectricTestRunner::class)
-class FactsRepositoryTest {
-
+class FactsRepositoryTest : AutoCloseKoinTest() {
     val service by lazy { mock(ChuckFactsService::class.java) }
     private val termDao by lazy { mock(TermDao::class.java) }
     private val factsRepository by lazy { FactsRepositoryImpl(service, termDao) }
-
-    @Before
-    fun setup() {
-        MockitoAnnotations.initMocks(this)
-    }
 
     @Test
     fun `should return list of facts`() {
