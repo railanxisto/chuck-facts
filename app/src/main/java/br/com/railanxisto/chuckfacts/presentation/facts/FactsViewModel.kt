@@ -1,6 +1,5 @@
 package br.com.railanxisto.chuckfacts.presentation.facts
 
-import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import br.com.railanxisto.chuckfacts.data.remote.repositories.FactsRepository
 import br.com.railanxisto.chuckfacts.domain.Fact
@@ -28,6 +27,8 @@ class FactsViewModel(private val repository: FactsRepository) : BaseViewModel() 
                 error.value = it.getRestErrorMessage()
             })
 
+        saveSearch(term)
+
         disposables.add(disposable)
     }
 
@@ -42,7 +43,5 @@ class FactsViewModel(private val repository: FactsRepository) : BaseViewModel() 
         disposables.add(disposable)
     }
 
-    fun getFactsList(): LiveData<List<Fact>> {
-        return facts
-    }
+    fun getFactsList() = facts
 }

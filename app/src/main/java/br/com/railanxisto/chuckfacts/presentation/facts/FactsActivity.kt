@@ -92,7 +92,6 @@ class FactsActivity : BaseActivity(), FactsAdapter.ShareButtonClickListener {
                 val query = data?.getStringExtra(SearchFactsActivity.RESULT_TERM)
                 query?.let {
                     if (query.isNotEmpty()) {
-                        viewModel.saveSearch(it)
                         viewModel.getFacts(query)
                     }
                 }
