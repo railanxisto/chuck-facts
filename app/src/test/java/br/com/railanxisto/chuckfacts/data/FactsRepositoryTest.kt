@@ -13,6 +13,7 @@ import org.koin.test.AutoCloseKoinTest
 import org.mockito.Mockito.`when`
 import org.mockito.Mockito.mock
 import org.robolectric.RobolectricTestRunner
+import retrofit2.Response
 
 @RunWith(RobolectricTestRunner::class)
 class FactsRepositoryTest : AutoCloseKoinTest() {
@@ -29,7 +30,7 @@ class FactsRepositoryTest : AutoCloseKoinTest() {
             )
         )
 
-        val single = Single.just(response)
+        val single = Single.just(Response.success(response))
         `when`(service.getFacts("food")).thenReturn(single)
         factsRepository.getFacts("food").test()
             .await()
@@ -42,7 +43,7 @@ class FactsRepositoryTest : AutoCloseKoinTest() {
     fun `should return empty list if has no results for the term`() {
         val queryFactsResponse = FactsResponse(0, listOf())
         `when`(service.getFacts("railannorris"))
-            .thenReturn(Single.just(queryFactsResponse))
+            .thenReturn(Single.just(Response.success(queryFactsResponse)))
 
         factsRepository.getFacts("railannorris").test()
             .await()
@@ -52,7 +53,7 @@ class FactsRepositoryTest : AutoCloseKoinTest() {
     }
     @Test
     fun test_mock_service() {
-        val result = Single.just(FactsResponse(0, listOf()))
+        val result = Single.just(Response.success(FactsResponse(0, listOf())))
         `when`(service.getFacts("")).thenReturn(result)
         Assert.assertEquals(service.getFacts(""), result)
     }

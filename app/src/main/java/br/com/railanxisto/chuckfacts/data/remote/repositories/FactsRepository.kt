@@ -19,6 +19,9 @@ class FactsRepositoryImpl(val apiService: ChuckFactsService, val termDao: TermDa
         return apiService
             .getFacts(term)
             .subscribeOn(Schedulers.io())
+            .map {
+                it.body()?.let { it }
+            }
     }
 
     override fun saveSearch(term: String) = termDao

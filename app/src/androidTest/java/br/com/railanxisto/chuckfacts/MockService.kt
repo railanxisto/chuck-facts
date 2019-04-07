@@ -4,12 +4,17 @@ import br.com.railanxisto.chuckfacts.data.remote.ChuckFactsService
 import br.com.railanxisto.chuckfacts.data.remote.model.FactsResponse
 import br.com.railanxisto.chuckfacts.domain.Fact
 import io.reactivex.Single
+import okhttp3.MediaType
+import okhttp3.ResponseBody
 import org.mockito.Mockito
+import retrofit2.Response
 
 class MockService(private val chuckFactsService: ChuckFactsService) {
 
-    val query = "food"
-    val queryTermForError = ""
+    val QUERY = "food"
+    val QUERY_EMPTY = "QUERY_EMPTY"
+    val QUERY_ERROR = "QUERY_ERROR"
+
     val listOfCategories = listOf("food", "dev")
     val listOfFacts = listOf(
         Fact("1", "url", "Fact", null, "icon"),
@@ -17,27 +22,26 @@ class MockService(private val chuckFactsService: ChuckFactsService) {
     )
 
     init {
-        mockResponseSucess()
-
-        // mockResponseOfErrorInQuery()
-
+        mockResponseOfFacts()
         mockResponseOfGetCategories()
     }
 
-    private fun mockResponseSucess() {
-        val response = FactsResponse(2, listOfFacts)
+    private fun mockResponseOfFacts() {
+        val response = Response.success(FactsResponse(2, listOfFacts))
+        val responseEmpty = Response.success(FactsResponse(2, listOf()))
 
-        Mockito.`when`(chuckFactsService.getFacts(query))
-            .thenReturn(Single.just(response))
-    }
-
-    /* private fun mockResponseOfErrorInQuery() {
         val expectedResponseBody = ResponseBody.create(MediaType.get("text/plain"), "Internal server error")
-        //val expectedResponse2 = Response.error<QueryFactsResponse>(500, expectedResponseBody)
+        val errorResponse = Response.error<FactsResponse>(500, expectedResponseBody)
 
-        Mockito.`when`(se.queryFacts(queryTermForError))
-            .thenReturn(Single.just(expectedResponse2))
-    } */
+        Mockito.`when`(chuckFactsService.getFacts(QUERY))
+            .thenReturn(Single.just(response))
+
+        Mockito.`when`(chuckFactsService.getFacts(QUERY_EMPTY))
+            .thenReturn(Single.just(responseEmpty))
+
+        Mockito.`when`(chuckFactsService.getFacts(QUERY_ERROR))
+            .thenReturn(Single.just(errorResponse))
+    }
 
     private fun mockResponseOfGetCategories() {
         Mockito.`when`(chuckFactsService.getCategories())
