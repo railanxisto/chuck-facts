@@ -103,4 +103,16 @@ class FactsActivityTest : KoinTest {
         Thread.sleep(500)
         onView(withText(R.string.no_results)).inRoot(ToastMatcher()).check(matches(isDisplayed()))
     }
+
+    @Test
+    fun checkIfItShowsErrorScreen() {
+        Espresso.onView(ViewMatchers.withId(R.id.action_search)).perform(ViewActions.click())
+        Espresso.onView(ViewMatchers.withId(R.id.searchEditText)).perform(
+            ViewActions.typeText(mockService.QUERY_ERROR),
+            ViewActions.pressImeActionButton()
+        )
+        Thread.sleep(500)
+        Espresso.onView(ViewMatchers.withId(R.id.loadingErrorView))
+            .check(ViewAssertions.matches(ViewMatchers.isDisplayed()))
+    }
 }
