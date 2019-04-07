@@ -6,6 +6,7 @@ import androidx.test.espresso.Espresso.onView
 import androidx.test.espresso.action.ViewActions
 import androidx.test.espresso.assertion.ViewAssertions
 import androidx.test.espresso.assertion.ViewAssertions.matches
+import androidx.test.espresso.contrib.RecyclerViewActions
 import androidx.test.espresso.matcher.ViewMatchers
 import androidx.test.espresso.matcher.ViewMatchers.isDisplayed
 import androidx.test.espresso.matcher.ViewMatchers.withText
@@ -17,6 +18,8 @@ import br.com.railanxisto.chuckfacts.R
 import br.com.railanxisto.chuckfacts.config.ToastMatcher
 import br.com.railanxisto.chuckfacts.data.remote.ChuckFactsService
 import br.com.railanxisto.chuckfacts.presentation.facts.FactsActivity
+import br.com.railanxisto.chuckfacts.presentation.searchFacts.adapters.CategoriesAdapter
+import br.com.railanxisto.chuckfacts.presentation.searchFacts.adapters.PastTermsAdapter
 import org.junit.Assert
 import org.junit.Before
 import org.junit.Rule
@@ -114,5 +117,37 @@ class FactsActivityTest : KoinTest {
         Thread.sleep(500)
         Espresso.onView(ViewMatchers.withId(R.id.loadingErrorView))
             .check(ViewAssertions.matches(ViewMatchers.isDisplayed()))
+    }
+
+    @Test
+    fun checkIfItGoesToFactsActivityWhenSuggestionIsClicked() {
+        onView(ViewMatchers.withId(R.id.action_search)).perform(ViewActions.click())
+        Thread.sleep(300)
+        onView(ViewMatchers.withId(R.id.suggestionsRecyclerView)).perform(
+            RecyclerViewActions.actionOnItem<CategoriesAdapter.CategoryViewHolder>(
+                ViewMatchers.withText(mockService.QUERY),
+                ViewActions.click()
+            )
+        )
+        Thread.sleep(300)
+        Espresso.onView(ViewMatchers.withId(R.id.factsRecyclerView)).check { view, _ ->
+            Assert.assertEquals(RecyclerView::class.java, view::class.java)
+            val recyclerView = view as RecyclerView
+            Assert.assertTrue(recyclerView.adapter?.itemCount == mockService.listOfFacts.size)
+        }
+    }
+
+    @Test
+    fun checkIfItGoesToFactsActivityWhenPastSearchIsClicked() {
+        onView(ViewMatchers.withId(R.id.action_search)).perform(ViewActions.click())
+        Thread.sleep(300)
+        onView(ViewMatchers.withId(R.id.pastSearchesRecyclerView)).perform(
+            RecyclerViewActions.actionOnItem<PastTermsAdapter.TermViewHolder>(
+                ViewMatchers.withText(mockService.QUERY),
+                ViewActions.click()
+            )
+        )
+        Thread.sleep(300)
+        checkIfFactsActivityIsShown()
     }
 }
