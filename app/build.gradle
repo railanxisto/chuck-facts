@@ -55,53 +55,54 @@ task ktlintFormat(type: JavaExec, group: "formatting") {
 
 dependencies {
     implementation fileTree(dir: 'libs', include: ['*.jar'])
-    implementation "org.jetbrains.kotlin:kotlin-stdlib-jdk7:$kotlin_version"
-    implementation "androidx.appcompat:appcompat:$appcompat_version"
-    implementation "com.android.support:appcompat-v7:$support"
-    implementation "com.android.support:design:$support"
-    implementation "androidx.core:core-ktx:$core_ktx_version"
-    implementation "androidx.constraintlayout:constraintlayout:$constraintlayout_version"
-    implementation "androidx.legacy:legacy-support-v4:$legacy"
-    testImplementation "junit:junit:$junit"
+    implementation Dependencies.kotlinStdlib
+    implementation Dependencies.compat
+    implementation Dependencies.supportCompat
+    implementation Dependencies.supportDesign
+    implementation Dependencies.coreKtx
+
+    implementation Dependencies.constraintLayout
+    implementation Dependencies.legacy
+    testImplementation Dependencies.junit
 
     // Api & Http
-    implementation "com.squareup.retrofit2:retrofit:$retrofit"
-    implementation "com.squareup.retrofit2:converter-gson:$retrofit"
-    implementation "com.squareup.okhttp3:logging-interceptor:$logging_interceptor_version"
-    implementation "com.squareup.retrofit2:adapter-rxjava2:$retrofit"
+    implementation Dependencies.retrofit
+    implementation Dependencies.retrofitConverter
+    implementation Dependencies.loggingInterceptor
+    implementation Dependencies.retrofitRxjava
 
     // Koin
-    implementation "org.koin:koin-android:$koin"
-    implementation "org.koin:koin-android-viewmodel:$koin"
-    testImplementation "org.koin:koin-test:$koin"
+    implementation Dependencies.koin
+    implementation Dependencies.koinViewmodel
+    testImplementation Dependencies.koinTest
 
     // rxjava
-    implementation "io.reactivex.rxjava2:rxjava:$rxjava_version"
-    implementation "io.reactivex.rxjava2:rxandroid:$rxandroid_version"
+    implementation Dependencies.rxJava
+    implementation Dependencies.rxAndroid
 
     // flexbox
-    implementation "com.google.android:flexbox:$flexbox"
+    implementation Dependencies.flexbox
 
     // room
-    implementation "androidx.room:room-runtime:$room"
-    kapt "androidx.room:room-compiler:$room"
-    implementation "androidx.room:room-rxjava2:$room"
+    implementation Dependencies.room
+    kapt Dependencies.kaptRoom
+    implementation Dependencies.roomRxjava
 
     // ktlint
-    ktlint "com.github.shyiko:ktlint:$ktlint_version"
+    ktlint Dependencies.ktlint
 
     // mockito
-    testImplementation "org.mockito:mockito-core:$mockito"
-    androidTestImplementation "org.mockito:mockito-android:$mockito"
+    testImplementation Dependencies.mockitoCore
+    androidTestImplementation Dependencies.mockitoAndroid
 
     // tests
-    testImplementation "org.robolectric:robolectric:$roboletric"
-    testImplementation "androidx.arch.core:core-testing:$core_testing"
-    androidTestImplementation "androidx.test.espresso:espresso-core:$androidx_espresso"
-    androidTestImplementation "androidx.test.espresso:espresso-contrib:$androidx_espresso"
+    testImplementation Dependencies.roboletric
+    testImplementation Dependencies.coreTesting
+    androidTestImplementation Dependencies.espresso
+    androidTestImplementation Dependencies.espressoContrib
 
-    androidTestImplementation "androidx.test.ext:junit:$junit"
-    androidTestImplementation "androidx.arch.core:core-testing:$core_testing"
-    androidTestImplementation "androidx.test:runner:$test_runner"
-    androidTestImplementation "org.koin:koin-test:$koin"
+    androidTestImplementation Dependencies.junitExt
+    androidTestImplementation Dependencies.coreTesting
+    androidTestImplementation Dependencies.testRunner
+    androidTestImplementation Dependencies.koinTest
 }
