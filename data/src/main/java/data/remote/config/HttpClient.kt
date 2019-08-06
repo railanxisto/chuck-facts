@@ -1,4 +1,4 @@
-package br.com.railanxisto.chuckfacts.data.remote.config
+package data.remote.config
 
 import br.com.railanxisto.chuckfacts.data.remote.ApiConstants
 import okhttp3.OkHttpClient

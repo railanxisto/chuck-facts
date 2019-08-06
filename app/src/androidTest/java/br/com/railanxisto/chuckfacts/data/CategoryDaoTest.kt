@@ -3,8 +3,8 @@ package br.com.railanxisto.chuckfacts.data
 import androidx.room.Room
 import androidx.test.internal.runner.junit4.AndroidJUnit4ClassRunner
 import androidx.test.platform.app.InstrumentationRegistry
-import br.com.railanxisto.chuckfacts.data.local.AppDatabase
-import br.com.railanxisto.chuckfacts.data.local.model.Category
+import data.local.AppDatabase
+import data.local.model.Category
 import org.junit.After
 import org.junit.Assert
 import org.junit.Test

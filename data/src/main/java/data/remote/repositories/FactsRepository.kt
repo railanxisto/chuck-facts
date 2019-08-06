@@ -1,7 +1,7 @@
 package br.com.railanxisto.chuckfacts.data.remote.repositories
 
-import br.com.railanxisto.chuckfacts.data.local.DAO.TermDao
-import br.com.railanxisto.chuckfacts.data.local.model.Term
+import data.local.DAO.TermDao
+import data.local.model.Term
 import br.com.railanxisto.chuckfacts.data.remote.ChuckFactsService
 import br.com.railanxisto.chuckfacts.data.remote.model.FactsResponse
 import io.reactivex.Completable

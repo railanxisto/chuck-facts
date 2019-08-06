@@ -1,9 +1,9 @@
-package br.com.railanxisto.chuckfacts.data.local.DAO
+package data.local.DAO
 
 import androidx.room.Dao
 import androidx.room.Insert
 import androidx.room.Query
-import br.com.railanxisto.chuckfacts.data.local.model.Category
+import data.local.model.Category
 import io.reactivex.Single
 
 @Dao

@@ -5,8 +5,7 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import br.com.railanxisto.chuckfacts.R
-import br.com.railanxisto.chuckfacts.data.local.model.Term
-import kotlinx.android.synthetic.main.category_item.view.*
+import data.local.model.Term
 import kotlinx.android.synthetic.main.past_terms_item.view.*
 
 class PastTermsAdapter(

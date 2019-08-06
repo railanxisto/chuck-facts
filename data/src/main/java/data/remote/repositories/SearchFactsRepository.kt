@@ -1,8 +1,8 @@
 package br.com.railanxisto.chuckfacts.data.remote.repositories
 
-import br.com.railanxisto.chuckfacts.data.local.DAO.CategoryDao
-import br.com.railanxisto.chuckfacts.data.local.DAO.TermDao
-import br.com.railanxisto.chuckfacts.data.local.model.Term
+import data.local.DAO.CategoryDao
+import data.local.DAO.TermDao
+import data.local.model.Term
 import br.com.railanxisto.chuckfacts.data.remote.ChuckFactsService
 import br.com.railanxisto.chuckfacts.domain.Category
 import io.reactivex.Maybe
@@ -22,7 +22,7 @@ class SearchFactsRepositoryImpl(val apiService: ChuckFactsService, val categoryD
         val dataFromApi = getCategoriesFromApi()
             .doOnSuccess { categoryDao.insertCategories(
                     it.map {
-                        br.com.railanxisto.chuckfacts.data.local.model.Category(it.name)
+                        data.local.model.Category(it.name)
                     })
             }
 

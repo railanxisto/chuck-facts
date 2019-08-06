@@ -1,7 +1,7 @@
 package br.com.railanxisto.chuckfacts.di
 
 import androidx.room.Room
-import br.com.railanxisto.chuckfacts.data.local.AppDatabase
+import data.local.AppDatabase
 import org.koin.dsl.module
 
 val databaseModule = module {

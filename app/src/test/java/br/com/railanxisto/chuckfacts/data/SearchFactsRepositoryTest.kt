@@ -1,8 +1,8 @@
 package br.com.railanxisto.chuckfacts.data
 
-import br.com.railanxisto.chuckfacts.data.local.DAO.CategoryDao
-import br.com.railanxisto.chuckfacts.data.local.DAO.TermDao
-import br.com.railanxisto.chuckfacts.data.local.model.Category
+import data.local.DAO.CategoryDao
+import data.local.DAO.TermDao
+import data.local.model.Category
 import br.com.railanxisto.chuckfacts.data.remote.ChuckFactsService
 import br.com.railanxisto.chuckfacts.data.remote.repositories.SearchFactsRepositoryImpl
 import io.reactivex.Single

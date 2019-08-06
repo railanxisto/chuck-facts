@@ -2,7 +2,7 @@ package br.com.railanxisto.chuckfacts.presentation.searchFacts
 
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
-import br.com.railanxisto.chuckfacts.data.local.model.Term
+import data.local.model.Term
 import br.com.railanxisto.chuckfacts.data.remote.repositories.SearchFactsRepository
 import br.com.railanxisto.chuckfacts.domain.Category
 import br.com.railanxisto.chuckfacts.presentation.common.BaseViewModel

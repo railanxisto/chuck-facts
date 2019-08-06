@@ -1,6 +1,6 @@
 package br.com.railanxisto.chuckfacts.data
 
-import br.com.railanxisto.chuckfacts.data.local.DAO.TermDao
+import data.local.DAO.TermDao
 import br.com.railanxisto.chuckfacts.data.remote.ChuckFactsService
 import br.com.railanxisto.chuckfacts.data.remote.model.FactsResponse
 import br.com.railanxisto.chuckfacts.data.remote.repositories.FactsRepositoryImpl

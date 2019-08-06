@@ -7,7 +7,7 @@ import android.view.inputmethod.EditorInfo
 import androidx.lifecycle.Observer
 import androidx.recyclerview.widget.LinearLayoutManager
 import br.com.railanxisto.chuckfacts.R
-import br.com.railanxisto.chuckfacts.data.local.model.Term
+import data.local.model.Term
 import br.com.railanxisto.chuckfacts.domain.Category
 import br.com.railanxisto.chuckfacts.presentation.common.BaseActivity
 import br.com.railanxisto.chuckfacts.presentation.searchFacts.adapters.CategoriesAdapter

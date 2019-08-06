@@ -2,9 +2,9 @@ package br.com.railanxisto.chuckfacts.presentation
 
 import android.app.Application
 import androidx.room.Room
-import br.com.railanxisto.chuckfacts.data.local.AppDatabase
+import data.local.AppDatabase
 import br.com.railanxisto.chuckfacts.data.remote.ChuckFactsService
-import br.com.railanxisto.chuckfacts.data.remote.config.HttpClientImpl
+import data.remote.config.HttpClientImpl
 import br.com.railanxisto.chuckfacts.data.remote.config.RetrofitManager
 import br.com.railanxisto.chuckfacts.data.remote.repositories.FactsRepository
 import br.com.railanxisto.chuckfacts.data.remote.repositories.FactsRepositoryImpl
