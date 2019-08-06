@@ -3,7 +3,7 @@ package br.com.railanxisto.chuckfacts.presentation
 import androidx.arch.core.executor.testing.InstantTaskExecutorRule
 import br.com.railanxisto.chuckfacts.data.remote.model.FactsResponse
 import br.com.railanxisto.chuckfacts.data.remote.repositories.FactsRepository
-import br.com.railanxisto.chuckfacts.domain.Fact
+import domain.Fact
 import br.com.railanxisto.chuckfacts.presentation.facts.FactsViewModel
 import br.com.railanxisto.chuckfacts.testObserver
 import io.reactivex.Completable

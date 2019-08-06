@@ -4,7 +4,7 @@ import br.com.railanxisto.chuckfacts.data.local.DAO.TermDao
 import br.com.railanxisto.chuckfacts.data.remote.ChuckFactsService
 import br.com.railanxisto.chuckfacts.data.remote.model.FactsResponse
 import br.com.railanxisto.chuckfacts.data.remote.repositories.FactsRepositoryImpl
-import br.com.railanxisto.chuckfacts.domain.Fact
+import domain.Fact
 import io.reactivex.Single
 import org.junit.Assert
 import org.junit.Test

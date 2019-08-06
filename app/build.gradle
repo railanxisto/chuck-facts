@@ -54,7 +54,7 @@ task ktlintFormat(type: JavaExec, group: "formatting") {
 
 
 dependencies {
-    implementation fileTree(dir: 'libs', include: ['*.jar'])
+    implementation project(':domain')
     implementation Dependencies.kotlinStdlib
     implementation Dependencies.compat
     implementation Dependencies.supportCompat

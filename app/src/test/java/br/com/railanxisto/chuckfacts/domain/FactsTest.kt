@@ -3,6 +3,7 @@ package br.com.railanxisto.chuckfacts.domain
 import org.junit.Assert
 import org.junit.Test
 import br.com.railanxisto.chuckfacts.presentation.utils.Constants
+import domain.Fact
 
 class FactsTest {
     @Test

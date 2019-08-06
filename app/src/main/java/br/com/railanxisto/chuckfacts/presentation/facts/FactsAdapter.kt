@@ -5,9 +5,8 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import br.com.railanxisto.chuckfacts.R
-import br.com.railanxisto.chuckfacts.domain.Fact
+import domain.Fact
 import kotlinx.android.synthetic.main.fact_item.view.*
-import kotlinx.android.synthetic.main.past_terms_item.view.*
 
 class FactsAdapter(
     val listener: ShareButtonClickListener

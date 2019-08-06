@@ -2,7 +2,7 @@ package br.com.railanxisto.chuckfacts
 
 import br.com.railanxisto.chuckfacts.data.remote.ChuckFactsService
 import br.com.railanxisto.chuckfacts.data.remote.model.FactsResponse
-import br.com.railanxisto.chuckfacts.domain.Fact
+import domain.Fact
 import io.reactivex.Single
 import okhttp3.MediaType
 import okhttp3.ResponseBody

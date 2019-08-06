@@ -2,7 +2,7 @@ package br.com.railanxisto.chuckfacts.presentation.facts
 
 import androidx.lifecycle.MutableLiveData
 import br.com.railanxisto.chuckfacts.data.remote.repositories.FactsRepository
-import br.com.railanxisto.chuckfacts.domain.Fact
+import domain.Fact
 import br.com.railanxisto.chuckfacts.presentation.common.BaseViewModel
 import br.com.railanxisto.chuckfacts.presentation.utils.ext.getRestErrorMessage
 
